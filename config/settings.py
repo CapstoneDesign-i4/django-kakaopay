@@ -11,7 +11,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY') # Here
 DEBUG = config('DEBUG', cast = bool) # Here
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    ".ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com"
+]
 
 # Application definition
 
