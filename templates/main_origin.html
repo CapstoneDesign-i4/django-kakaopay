@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+a { text-decoration:none !important } a:hover { text-decoration:none !important }
+
+#menu button{
+  background:#302e2e;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  width:300px;
+  font-size:1.3em;
+  padding:0 2em;
+  display:block;
+  margin:auto;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+#menu button:hover{
+  background:#fff;
+  color:#302e2e;
+  }
+
+h1{
+    padding:30px;
+    text-align: center;
+}
+</style>
+
+{% if user.is_authenticated %}
+<h1>{{user.first_name}} 고객님, 안녕하세요?</h1>
+<div id = "menu">
+    <a href="{% url 'account:logout' %}"> <button> 로그아웃 </button> </a>
+    <br>
+    <a href="{% url 'matchat:my' %}"><button> MY </button></a>
+    <br>
+</div>
+
+{% else %}
+<div id = 'menu'>
+    <h1>비회원 고객님, 안녕하세요?</h1>
+    <a href="{% url 'account:login' %}"><button> 로그인 </button></a>
+    <br>
+    <a href="{% url 'account:signup' %}"><button> 회원가입 </button></a>
+    <br>
+</div>
+{% endif %}
+
+<div id = 'menu'>
+    <a href="{% url 'matchat:product_create' %}"><button> 사전등록 </button></a>
+    <br>
+    <a href="{% url 'matchat:index' %}"><button> 상품목록 </button></a>
+    <br>
+</div>
+
+{% endblock %}
