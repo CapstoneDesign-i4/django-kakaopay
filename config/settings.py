@@ -12,11 +12,7 @@ SECRET_KEY = config('SECRET_KEY') # Here
 DEBUG = config('DEBUG', cast = bool) # Here
 
 ALLOWED_HOSTS = [
-<<<<<<< HEAD
-    #".ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com"
-=======
     ".ap-northeast-2.compute.amazonaws.com"
->>>>>>> f13cc42ff67e28962677fa90fc4859ff3b7c03ba
 ]
 
 # Application definition
