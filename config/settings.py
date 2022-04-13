@@ -13,7 +13,8 @@ DEBUG = config('DEBUG', cast = bool) # Here
 
 ALLOWED_HOSTS = [
 
-    ".ap-northeast-2.compute.amazonaws.com"
+    ".ap-northeast-2.compute.amazonaws.com",
+    ".matchat.shop"
 
 ]
 
