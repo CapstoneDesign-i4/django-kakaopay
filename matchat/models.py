@@ -17,13 +17,14 @@ class Product(models.Model):
     lock_num = models.IntegerField(null=True)  # 사용자 직접입력
     key = models.IntegerField(null=True)  # 우리가 랜덤으로 부여
     place = models.CharField(max_length=10, default='이대역') # 지점
+    kiosk_photo = models.CharField(max_length=2090, null=True, blank=True) #kiosk 사진의 url 저장
+    kiosk_result = models.CharField(max_length=100, default='none')
 
     def __str__(self):
         return self.name
 
 class Photo(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
-    result = models.CharField(max_length=100, default='none')
     photo = models.ImageField(upload_to=directory_path, blank=True, null=True)
 
 class Credit_Info(models.Model):
@@ -35,10 +36,5 @@ class Credit_Info(models.Model):
     cvc_num=models.CharField(max_length=20)
     dead_year=models.CharField(max_length=20)
     dead_month=models.CharField(max_length=20)
-
-class Kiosk_Photo(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
-    result = models.CharField(max_length=100, default='none')
-    photo = models.ImageField(upload_to=directory_path, blank=True, null=True)
 
 
