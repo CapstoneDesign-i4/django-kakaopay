@@ -173,9 +173,9 @@ def pay(request, product_id):
             "quantity": "1",                # 구매 물품 수량
             "total_amount": product.price,        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
-            "approval_url": "http://matchat.shop/matchat/pay/approval",
-            "cancel_url": "http://matchat.shop/matchat/pay/cancel",
-            "fail_url": "http://matchat.shop/matchat/pay/fail",
+            "approval_url": "http://.matchat.shop/matchat/pay/approval",
+            "cancel_url": "http://.matchat.shop/matchat/pay/cancel",
+            "fail_url": "http://.matchat.shop/matchat/pay/fail",
         }
 
         res = requests.post(URL, headers=headers, params=params)
