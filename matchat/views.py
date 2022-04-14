@@ -57,12 +57,13 @@ def detail(request, product_id):
     #상세 페이지
     #product = get_object_or_404(Product, pk=product_id)
     product = get_object_or_404(Product, pk=product_id)
+    image = get_object_or_404(Photo, pk = product_id)
     response = [
         "상품 이름은 "+product.name+"입니다.",
         "상품 가격은 "+product.price+"원 입니다.",
         "수령할 위치는 "+product.place+"입니다.",
         "상품 상태:"+product.content,
-        "사진",
+        image.photo,
         "사용 기간은 "+product.use_period+"입니다."
     ]
     batch_update_intents(list(intent_id.keys()), response)
