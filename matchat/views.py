@@ -157,7 +157,7 @@ def product_my(request):
 @login_required(login_url='account:login')
 def pay(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    if request.method == "POST":
+    if request.method == "GET":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
             "Authorization": "KakaoAK " + config('ADMIN_KEY'),   # 변경불가
@@ -180,7 +180,8 @@ def pay(request, product_id):
         request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
         return redirect(next_url)
-    return render(request, 'matchat/pay.html')
+    context={'product':product}
+    return render(request, 'matchat/pay.html', context)
 
 def approval(request):
     product = Product.objects.all()
