@@ -21,7 +21,7 @@ import json
 
 def main(request):
     product_list = Product.objects.order_by('-create_date')
-    context = {'product_list': product_list, "product_id" : product.id}
+    context = {'product_list': product_list}
     return render(request, 'main.html', context)
 
 def index(request):
