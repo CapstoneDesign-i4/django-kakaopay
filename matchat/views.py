@@ -157,7 +157,7 @@ def product_my(request):
 
 @login_required(login_url='account:login')
 def pay(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
+    #product = get_object_or_404(Product, pk=product_id)
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
@@ -172,9 +172,9 @@ def pay(request, product_id):
             "quantity": "1",                # 구매 물품 수량
             "total_amount": product.price,        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
-            "approval_url": "http://ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
-            "cancel_url": "http://ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
-            "fail_url": "http://ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
+            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
+            "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
+            "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
 
         res = requests.post(URL, headers=headers, params=params)
