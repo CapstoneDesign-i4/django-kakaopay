@@ -15,7 +15,6 @@ ALLOWED_HOSTS = [
 
     ".ap-northeast-2.compute.amazonaws.com",
     ".matchat.shop",
-    "127.0.0.1"
 
 ]
 
