@@ -157,8 +157,6 @@ def product_my(request):
 @login_required(login_url='account:login')
 def pay(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    #product.order_num = randint(10000, 99999)
-    product.save()
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
@@ -185,7 +183,7 @@ def pay(request, product_id):
     return render(request, 'matchat/pay.html')
 
 def approval(request):
-    #product = Product.objects.all()
+    product = Product.objects.all()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
