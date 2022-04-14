@@ -12,10 +12,9 @@ SECRET_KEY = config('SECRET_KEY') # Here
 DEBUG = config('DEBUG', cast = bool) # Here
 
 ALLOWED_HOSTS = [
-
+    "ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com",
     #".ap-northeast-2.compute.amazonaws.com",
     ".matchat.shop",
-
 ]
 
 # Application definition
