@@ -22,7 +22,7 @@ import json
 def main(request):
     product_list = Product.objects.order_by('-create_date')
     context = {'product_list': product_list}
-    return render(request, 'main.html', context)
+    return render(request, 'main.html', context, product_id=product.id)
 
 def index(request):
     #상품 목록
