@@ -171,20 +171,19 @@ def pay(request, product_id):
             "quantity": "1",                # 구매 물품 수량
             "total_amount": product.price,        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
-            "approval_url": "http://matchat.shop/matchat/pay/approval",
-            "cancel_url": "http://matchat.shop/matchat/pay/cancel",
-            "fail_url": "http://matchat.shop/matchat/pay/fail",
+            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
+            "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
+            "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
 
         res = requests.post(URL, headers=headers, params=params)
         request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
         return redirect(next_url)
-    context={'product':product}
-    return render(request, 'matchat/pay.html',context)
+    return render(request, 'matchat/pay.html')
 
 def approval(request):
-    product = Product.objects.all()
+    #product = Product.objects.all()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
