@@ -167,14 +167,14 @@ def pay(request, product_id):
         params = {
             "cid": "TC0ONETIME",  # 테스트용 코드
             "partner_order_id": "1",     # 주문번호
-            "partner_user_id": product.author,    # 유저 아이디
+            "partner_user_id": request.user.usrname,    # 유저 아이디
             "item_name": product.name,        # 구매 물품 이름
             "quantity": "1",                # 구매 물품 수량
             "total_amount": product.price,        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
-            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
-            "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
-            "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
+            "approval_url": "http://ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
+            "cancel_url": "http://ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
+            "fail_url": "http://ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
 
         res = requests.post(URL, headers=headers, params=params)
