@@ -72,7 +72,7 @@ def def_intent(intent_name, response, type):
                 [
                     {
                         "type": "image",
-                        "rawUrl": "http://matchat.shop"+response,
+                        "rawUrl": "http://matchat.shop/media/admin/eng/1.jpeg",
                         "accessibilityText": "example"
                     }
                 ]
