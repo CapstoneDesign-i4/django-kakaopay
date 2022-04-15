@@ -12,7 +12,7 @@ class Product(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
-    reservation = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservation', null=True, blank=True) #예약한 사람
+    reservation = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservation', null=True, blank=True) #예약한 사람 -> 예약 기능 X
     state = models.CharField(max_length=1, default='0')
     lock_num = models.IntegerField(null=True)  # 사용자 직접입력
     key = models.IntegerField(null=True)  # 우리가 랜덤으로 부여

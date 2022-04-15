@@ -42,10 +42,8 @@
 {% if request.user != product.author %}
     {% if product.reservation == null %}
         <a href="{% url 'matchat:pay' product.id %}" class="btn btn-outline-info">결제</a>
-    {% elif request.user == product.reservation %}
-        <a href="{% url 'matchat:product_reserve_delete' product.id %}" class="btn btn-danger">예약취소</a>
     {% else %}
-        <a href="" class="btn btn-danger">예약완료</a>
+        <a href="" class="btn btn-danger">결제완료</a>
     {% endif %}
 {% endif %}
 

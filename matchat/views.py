@@ -138,15 +138,16 @@ def product_delete(request, product_id):
 def product_reserve(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.reservation = request.user
-    product.state = '2' #예약을 하면 상태 2(예약중) 으로 변경
+    product.state = '2' #결제를 하면 상태 2(결제완료) 로 변경
     product.save()
     return redirect('matchat:detail', product_id=product.id)
 
+#예약 취소를 위한 함수 -> 예약 기능이 사라져서 사용 X
 @login_required(login_url='account:login')
 def product_reserve_delete(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.reservation = None
-    product.state = '1' #예약 취소를 하면 1(등록완료) 로 변경
+    product.state = '1' #취소를 하면 1(등록완료) 로 변경
     product.save()
     return redirect('matchat:detail', product_id=product.id)
 
@@ -157,7 +158,7 @@ def product_my(request):
 
 @login_required(login_url='account:login')
 def pay(request, product_id):
-    #product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
@@ -180,6 +181,9 @@ def pay(request, product_id):
         res = requests.post(URL, headers=headers, params=params)
         request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
+        product.reservation = request.user
+        product.state = '2'  # 결제를 하면 상태 2(결제완료) 로 변경
+        product.save()
         return redirect(next_url)
     return render(request, 'matchat/pay.html')
 

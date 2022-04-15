@@ -38,7 +38,7 @@
         <tbody>
         {% if product_list %}
         {% for product in product_list %}
-        <!--상태 1은 등록완료된 상품, 상태 2는 예약중인 상품. 두 가지 상태만 띄우기-->
+        <!--상태 1은 등록완료된 상품, 상태 2는 결제완료된 상품. 두 가지 상태만 띄우기-->
         {% if product.state == '1' or product.state == '2' %}
         <tr class="text-center">
             <td>{{product_list.paginator.count|sub:product_list.start_index|sub:forloop.counter0|add:1 }}</td>
@@ -56,9 +56,9 @@
             <td>{{ product.price }}</td>
 
             {% if product.state == '2' %}
-                <td><font color=red>예약중</font></td>
+                <td><font color=red>결제완료</font></td>
             {% else %}
-                <td>예약가능</td>
+                <td>결제</td>
             {% endif %}
             <td>{{ product.place }}</td>
             <td>{{ product.author.username }}</td>
