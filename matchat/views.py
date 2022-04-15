@@ -184,6 +184,7 @@ def pay(request, product_id):
     return render(request, 'matchat/pay.html')
 
 def approval(request):
+    product = get_object_all(Product)
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
@@ -203,6 +204,8 @@ def approval(request):
         'res': res,
         'amount': amount,
     }
+    product.reservation=request.user
+    product.save()
     return render(request, 'matchat/approval.html', context)
 
 def cancel(request):
