@@ -183,8 +183,8 @@ def pay(request, product_id):
         return redirect(next_url)
     return render(request, 'matchat/pay.html')
 
-def approval(request):
-    product = get_object_all(Product)
+def approval(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
