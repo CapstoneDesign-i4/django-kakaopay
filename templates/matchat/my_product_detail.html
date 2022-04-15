@@ -49,15 +49,6 @@
             {% endif %}
     </div>
 <a href="{% url 'matchat:my' %}" class="btn btn-primary">MY 목록</a>
-{% if request.user != product.author %}
-    {% if product.reservation == null %}
-        <a href="{% url 'matchat:product_reserve' product.id %}" class="btn btn-outline-info">결제</a>
-    {% elif request.user == product.reservation %}
-        <a href="{% url 'matchat:product_reserve_delete' product.id %}" class="btn btn-danger">결제취소</a>
-    {% else %}
-        <a href="" class="btn btn-danger">결제완료</a>
-    {% endif %}
-{% endif %}
 
 {% endblock %}
 {% block script %}
