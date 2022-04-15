@@ -177,18 +177,14 @@ def pay(request, product_id):
             "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
             "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
-
         res = requests.post(URL, headers=headers, params=params)
         request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
-        product.reservation = request.user
-        product.state = '2'  # 결제를 하면 상태 2(결제완료) 로 변경
-        product.save()
         return redirect(next_url)
     return render(request, 'matchat/pay.html')
 
-def approval(request):
-    product = Product.objects.all()
+def approval(request, product_id):
+    product_reserve(request, product_id)
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
