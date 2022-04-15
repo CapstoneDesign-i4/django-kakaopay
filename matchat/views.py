@@ -181,9 +181,6 @@ def pay(request, product_id):
         res = requests.post(URL, headers=headers, params=params)
         request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
-        product.reservation = request.user
-        product.state = '2'  # 결제를 하면 상태 2(결제완료) 로 변경
-        product.save()
         return redirect(next_url)
     return render(request, 'matchat/pay.html')
 
@@ -208,6 +205,9 @@ def approval(request):
         'res': res,
         'amount': amount,
     }
+    product.reservation = request.user
+    product.state = '2'  # 결제를 하면 상태 2(결제완료) 로 변경
+    product.save()
     return render(request, 'matchat/approval.html', context)
 
 def cancel(request):
