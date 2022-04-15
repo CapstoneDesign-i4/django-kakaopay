@@ -40,7 +40,7 @@
     </div>
 <a href="{% url 'main' %}" class="btn btn-primary">메인</a>
 {% if request.user != product.author %}
-    {% if product.reservation == null %}
+    {% if product.reservation == None %}
         <a href="{% url 'matchat:pay' product.id %}" class="btn btn-outline-info">결제</a>
     {% else %}
         <a href="" class="btn btn-danger">결제완료</a>
