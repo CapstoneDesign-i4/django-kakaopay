@@ -204,7 +204,7 @@ def approval(request):
         'res': res,
         'amount': amount,
     }
-    product.reservation=request.user
+    product.reservation=request.user.username
     product.save()
     return render(request, 'matchat/approval.html', context)
 
