@@ -133,7 +133,7 @@ def batch_update_intents(intent_name, response):
     )
     request = dialogflow_v2beta1.BatchUpdateIntentsRequest(
         parent="projects/" + DIALOGFLOW_PROJECT_ID + "/locations/global/agent",
-        intent_batch_uri="gs://matchat_chatbot/intents/",
+        intent_batch_uri="gs://matchat/intents/",
         intent_batch_inline=ib,
         language_code=DIALOGFLOW_LANGUAGE_CODE,
     )
