@@ -120,6 +120,7 @@ def update_intent2(display_name):
 
 
 def batch_update_intents(intent_name, response):
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'chatbot/private_key.json'
     # Create a client
     client = dialogflow_v2beta1.IntentsClient()
     intents = list()
