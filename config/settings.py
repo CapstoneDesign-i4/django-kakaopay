@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'matchat.apps.MatchatConfig',
     'account.apps.AccountConfig',
     'chatbot',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,16 @@ LOGOUT_REDIRECT_URL ='/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+#S3
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_KEY")
+AWS_REGION = config("BUCKET_REGION")
+AWS_STORAGE_BUCKET_NAME = config("BUCKET_NAME")
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024000000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024000000
+
+DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
+STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
