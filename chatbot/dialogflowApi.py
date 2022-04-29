@@ -4,6 +4,7 @@
 import os
 import django
 import google.protobuf.struct_pb2
+from decouple import config
 from google.cloud import dialogflow_v2beta1
 from google.cloud.dialogflow_v2beta1 import IntentBatch
 from google.protobuf import field_mask_pb2
@@ -72,7 +73,7 @@ def def_intent(intent_name, response, type):
                 [
                     {
                         "type": "image",
-                        "rawUrl": "http://matchat.shop"+response,
+                        "rawUrl": f'https://{config("BUCKET_NAME")}.s3.{config("BUCKET_REGION")}.amazonaws.com/raspberrypi/{response}.jpeg',
                         "accessibilityText": "example"
                     }
                 ]
@@ -120,7 +121,6 @@ def update_intent2(display_name):
 
 
 def batch_update_intents(intent_name, response):
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'chatbot/private_key.json'
     # Create a client
     client = dialogflow_v2beta1.IntentsClient()
     intents = list()
