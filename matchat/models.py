@@ -11,9 +11,7 @@ class Product(models.Model):
     content = models.TextField(null=True)
     create_date = models.DateTimeField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
-    reservation = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservation', null=True, blank=True) #예약한 사람 -> 예약 기능 X
     state = models.CharField(max_length=1, default='0')
-    lock_num = models.IntegerField(null=True)  # 사용자 직접입력
     key = models.IntegerField(null=True)  # 우리가 랜덤으로 부여
     place = models.CharField(max_length=10, default='이대역') # 지점
     kiosk_photo = models.CharField(max_length=2090, null=True, blank=True) #kiosk 사진의 url 저장

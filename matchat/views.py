@@ -136,7 +136,6 @@ def product_delete(request, product_id):
 @login_required(login_url='account:login')
 def product_reserve(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    product.reservation = request.user
     product.state = '2' #결제를 하면 상태 2(결제완료) 로 변경
     product.save()
     return redirect('matchat:detail', product_id=product.id)
@@ -145,7 +144,6 @@ def product_reserve(request, product_id):
 @login_required(login_url='account:login')
 def product_reserve_delete(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    product.reservation = None
     product.state = '1' #취소를 하면 1(등록완료) 로 변경
     product.save()
     return redirect('matchat:detail', product_id=product.id)
@@ -184,7 +182,6 @@ def pay(request, product_id):
 
 def approval(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    product.reservation=request.user
     product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {

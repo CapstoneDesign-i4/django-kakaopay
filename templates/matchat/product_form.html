@@ -47,11 +47,6 @@
                       id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
         <div class="form-group">
-            <label for="lock_num">사물함 비밀번호</label>
-            <input type="number" class="form-control" name="lock_num" id="lock_num"
-                   value="{{ form.lock_num.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
             <label for="place">지점</label> <br>
             <label><input type="radio" name="place" id="place" value="이대역"> 이대역 </label><br>
             <label><input type="radio" name="place" id="place" value="방배역"> 방배역 </label><br>

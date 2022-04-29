@@ -5,9 +5,9 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    #dependencies = [
-        #('matchat', '0007_product_modify_date'),
-    #]
+    dependencies = [
+        ('matchat', '0007_product_modify_date'),
+    ]
 
     operations = [
         migrations.AddField(
