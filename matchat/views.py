@@ -110,7 +110,6 @@ def product_modify(request, product_id):
         if form.is_valid():
             product = form.save(commit=False)
             product.author = request.user
-            product.modify_date = timezone.now()
             product.save()
             product.photo_set.all().delete()
             for img in request.FILES.getlist('photo'):

@@ -10,7 +10,6 @@ class Product(models.Model):
     price = models.CharField(max_length=10) #가격
     content = models.TextField(null=True)
     create_date = models.DateTimeField()
-    #modify_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
     reservation = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservation', null=True, blank=True) #예약한 사람 -> 예약 기능 X
     state = models.CharField(max_length=1, default='0')
