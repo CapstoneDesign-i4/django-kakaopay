@@ -114,15 +114,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-LOGIN_REDIRECT_URL ='/'
-LOGOUT_REDIRECT_URL ='/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
 #S3
 AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY")
 AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_KEY")
@@ -133,5 +124,11 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024000000
 FILE_UPLOAD_MAX_MEMORY_SIZE = 1024000000
 
-DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
-STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
+STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+LOGIN_REDIRECT_URL ='/'
+LOGOUT_REDIRECT_URL ='/'
+
+MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
