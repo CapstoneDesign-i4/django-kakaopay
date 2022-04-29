@@ -114,8 +114,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
-STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
+DEFAULT_FILE_STORAGE = 'config.media_storage.MediaStorage'
+STATIC_FILE_STORAGE = 'config.static_storage.StaticStorage'
 
 #S3
 AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY")
