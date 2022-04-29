@@ -11,6 +11,7 @@ class Product(models.Model):
     content = models.TextField(null=True)
     create_date = models.DateTimeField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
+    reservation = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservation', null=True, blank=True)
     state = models.CharField(max_length=1, default='0')
     key = models.IntegerField(null=True)  # 우리가 랜덤으로 부여
     place = models.CharField(max_length=10, default='이대역') # 지점
