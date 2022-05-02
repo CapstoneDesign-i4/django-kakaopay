@@ -92,7 +92,7 @@ def product_create(request):
                 photos.product = product
                 photos.photo = img
                 photos.save()
-            return redirect('config:main')
+            return redirect('matchat:main')
     else:
         form = ProductForm()
     context = {'form': form}
@@ -131,7 +131,7 @@ def product_delete(request, product_id):
         messages.error(request, '삭제권한이 없습니다')
         return redirect('account:detail', product_id=product.id)
     product.delete()
-    return redirect('config:main')
+    return redirect('matchat:main')
 
 @login_required(login_url='account:login')
 def product_reserve(request, product_id):

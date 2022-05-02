@@ -4,8 +4,6 @@ from matchat import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = 'config'
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),

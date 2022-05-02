@@ -6,7 +6,7 @@ from django.conf import settings
 app_name = 'matchat'
 
 urlpatterns =[
-   path('', views.index, name='index'),
+   path('', views.main, name='main'),
    path('<int:product_id>/', views.detail, name='detail'),
    path('product/create/', views.product_create, name='product_create'),
    path('product/modify/<int:product_id>/', views.product_modify, name='product_modify'),
