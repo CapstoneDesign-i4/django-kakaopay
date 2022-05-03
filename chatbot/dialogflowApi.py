@@ -110,7 +110,7 @@ def update_intent0(intent_name, response):
 def update_intent(name, response, type):
     client = dialogflow_v2beta1.IntentsClient()
 
-    intent_name = client.intent_path(DIALOGFLOW_PROJECT_ID, intent_id[name])
+    intent_name = "projects/" + DIALOGFLOW_PROJECT_ID + "/locations/global/agent/intents/" + intent_id[name]
     request = dialogflow_v2beta1.GetIntentRequest(
         name=intent_name,
     )

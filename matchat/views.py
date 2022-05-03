@@ -64,7 +64,7 @@ def detail(request, product_id):
         "https://ibb.co/h8J91rB",
         "사용 기간은 "+product.use_period+"입니다."
     ]
-    '''
+
     name = list(intent_id.keys())
     for i in range(len(response)):
         if i == 4:
@@ -73,7 +73,7 @@ def detail(request, product_id):
             update_intent(name[i], response[i], 0)
 
     #batch_update_intents(list(intent_id.keys()), response)
-    '''
+    
     context = {'product': product}
     return render(request, 'matchat/product_detail.html', context)
 
