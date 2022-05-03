@@ -203,7 +203,7 @@ def approval(request, product_id):
         "tid": request.session['tid'],  # 결제 요청시 세션에 저장한 tid
         "partner_order_id": product.key,     # 주문번호
         "partner_user_id": request.user.username,    # 유저 아이디
-        "pg_token": request.GET.get("pg_token"),     # 쿼리 스트링으로 받은 pg토큰
+        "pg_token": request.args.get("pg_token"),     # 쿼리 스트링으로 받은 pg토큰
     }
     res = requests.post(URL, headers=headers, params=params)
     amount = res.json()['amount']['total']
