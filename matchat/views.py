@@ -196,7 +196,7 @@ def approval(request):
         "partner_user_id": request.user.username,    # 유저 아이디
         "pg_token": request.GET.get("pg_token"),     # 쿼리 스트링으로 받은 pg토큰
     }
-    res = request.post(URL, headers=headers, params=params)
+    res = requests.post(URL, headers=headers, params=params)
     amount = res.json()['amount']['total']
     res = res.json()
     context = {
