@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 
-from chatbot.dialogflowApi import update_intent, batch_update_intents
+from chatbot.dialogflowApi import update_intent
 from chatbot.dialogflow_ID import intent_id
 from .models import Product, Photo
 from .forms import ProductForm
