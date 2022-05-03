@@ -65,14 +65,15 @@ def detail(request, product_id):
         "사용 기간은 "+product.use_period+"입니다."
     ]
 
-    # name = list(intent_id.keys())
+    name = list(intent_id.keys())
+    update_intent(name[0], response[0], 0)
     # for i in range(len(response)):
     #     if i == 4:
     #         update_intent(name[i], response[i], 1)
     #     else:
     #         update_intent(name[i], response[i], 0)
 
-    batch_update_intents(list(intent_id.keys()), response)
+    #batch_update_intents(list(intent_id.keys()), response)
     
     context = {'product': product}
     return render(request, 'matchat/product_detail.html', context)
