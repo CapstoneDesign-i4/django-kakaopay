@@ -183,7 +183,7 @@ def pay(request, product_id):
             "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
             "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
-        res = request.post(URL, headers=headers, params=params)
+        res = requests.post(URL, headers=headers, params=params)
         request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
         return redirect(next_url)
@@ -205,7 +205,7 @@ def approval(request):
         "partner_user_id": request.user.username,    # 유저 아이디
         "pg_token": request.GET.get("pg_token"),     # 쿼리 스트링으로 받은 pg토큰
     }
-    res = request.post(URL, headers=headers, params=params)
+    res = requests.post(URL, headers=headers, params=params)
     amount = res.json()['amount']['total']
     res = res.json()
     context = {
