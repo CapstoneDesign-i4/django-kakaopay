@@ -129,6 +129,7 @@ def batch_update_intents(intent_name, response):
             intents.append(def_intent(intent_name[i], response[i], "image"))
         else:
             intents.append(def_intent(intent_name[i], response[i], "text"))
+    update_mask = field_mask_pb2.FieldMask(paths = ["messages"])
     ib = IntentBatch(
         intents=intents  # intent list
     )
@@ -137,10 +138,11 @@ def batch_update_intents(intent_name, response):
         intent_batch_uri="gs://matchat/intents/",
         intent_batch_inline=ib,
         language_code=DIALOGFLOW_LANGUAGE_CODE,
+        update_mask = update_mask
     )
     # Make the request
     operation = client.batch_update_intents(request=request)
-    print("Waiting for operation to complete...")
+    # print("Waiting for operation to complete...")
     # response = operation.result()
     # Handle the response
     # print(response)
