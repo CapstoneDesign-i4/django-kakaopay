@@ -89,6 +89,30 @@ def def_intent(intent_name, response, type):
             training_phrases = training_phrases,
             messages = [message],
         )
+    elif type == "link":
+        payload = {
+          "richContent": [
+            [
+              {
+                "type": "info",
+                "title": response+" 검색",
+                "subtitle": "네이버 쇼핑 검색결과",
+                "actionLink": "https://search.shopping.naver.com/search/all?query="+response+"&cat_id=&frm=NVSHATC"
+              }
+            ]
+          ]
+        }
+        payload_struct = google.protobuf.struct_pb2.Struct()
+        payload_struct.update(payload)
+        message = dialogflow_v2beta1.types.Intent.Message(
+            payload=payload_struct
+        )
+        intent = dialogflow_v2beta1.Intent(
+            display_name=intent_name,
+            name="projects/" + DIALOGFLOW_PROJECT_ID + "/locations/global/agent/intents/" + intent_id[intent_name],
+            training_phrases=training_phrases,
+            messages=[message],
+        )
     #print(intent)
 
     return intent
@@ -153,6 +177,8 @@ def batch_update_intents(intent_name, response):
     for i in range(len(intent_name)):
         if i == 4:
             intents.append(def_intent(intent_name[i], response[i], "image"))
+        elif i == 6:
+            intents.append(def_intent(intent_name[i], response[i], "link"))
         else:
             intents.append(def_intent(intent_name[i], response[i], "text"))
     ib = IntentBatch(
