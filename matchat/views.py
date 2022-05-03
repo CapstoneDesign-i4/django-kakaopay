@@ -173,7 +173,7 @@ def pay(request, product_id):
         }
         params = {
             "cid": "TC0ONETIME",  # 테스트용 코드
-            "partner_order_id": '1',     # 주문번호
+            "partner_order_id": "1",     # 주문번호
             "partner_user_id": request.user.username,    # 유저 아이디
             "item_name": product.name,        # 구매 물품 이름
             "quantity": "1",                # 구매 물품 수량
@@ -191,8 +191,8 @@ def pay(request, product_id):
 
 def approval(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    #product.reservation = request.user
-    #product.save()
+    product.reservation = request.user
+    product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
