@@ -206,11 +206,11 @@ def approval(request, product_id):
         "pg_token": request.GET.get("pg_token"),     # 쿼리 스트링으로 받은 pg토큰
     }
     res = requests.post(URL, headers=headers, params=params)
-    #amount = res.json()['amount']['total']
+    amount = res.json()['amount']['total']
     res = res.json()
     context = {
         'res': res,
-        #'amount': amount,
+        'amount': amount,
     }
     return render(request, 'matchat/approval.html', context)
 
