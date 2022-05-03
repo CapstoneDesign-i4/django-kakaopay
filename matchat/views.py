@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 
-from chatbot.dialogflowApi import update_intent
+from chatbot.dialogflowApi import update_intent, batch_update_intents
 from chatbot.dialogflow_ID import intent_id
 from .models import Product, Photo
 from .forms import ProductForm
@@ -65,14 +65,14 @@ def detail(request, product_id):
         "사용 기간은 "+product.use_period+"입니다."
     ]
 
-    name = list(intent_id.keys())
-    for i in range(len(response)):
-        if i == 4:
-            update_intent(name[i], response[i], 1)
-        else:
-            update_intent(name[i], response[i], 0)
+    # name = list(intent_id.keys())
+    # for i in range(len(response)):
+    #     if i == 4:
+    #         update_intent(name[i], response[i], 1)
+    #     else:
+    #         update_intent(name[i], response[i], 0)
 
-    #batch_update_intents(list(intent_id.keys()), response)
+    batch_update_intents(list(intent_id.keys()), response)
     
     context = {'product': product}
     return render(request, 'matchat/product_detail.html', context)
