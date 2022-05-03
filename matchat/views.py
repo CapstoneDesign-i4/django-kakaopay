@@ -64,7 +64,7 @@ def detail(request, product_id):
         "https://ibb.co/h8J91rB",
         "사용 기간은 "+product.use_period+"입니다."
     ]
-    name = intent_id.keys()
+    name = list(intent_id.keys())
     for i in range(len(response)):
         if i == 4:
             update_intent(name[i], response[i], 1)
