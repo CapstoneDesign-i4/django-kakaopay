@@ -61,10 +61,17 @@ def detail(request, product_id):
         "상품 가격은 "+product.price+"원 입니다.",
         "수령할 위치는 "+product.place+"입니다.",
         "상품 상태:"+product.content,
-        product.key,
+        "https://ibb.co/h8J91rB",
         "사용 기간은 "+product.use_period+"입니다."
     ]
-    batch_update_intents(list(intent_id.keys()), response)
+    name = intent_id.keys()
+    for i in range(len(response)):
+        if i == 4:
+            update_intent(name[i], response[i], 1)
+        else:
+            update_intent(name[i], response[i], 0)
+
+    #batch_update_intents(list(intent_id.keys()), response)
     context = {'product': product}
     return render(request, 'matchat/product_detail.html', context)
 
