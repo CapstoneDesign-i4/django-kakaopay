@@ -165,7 +165,7 @@ def product_my(request):
 @login_required(login_url='account:login')
 def pay(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    if request.method == "POST" or request.method=="GET":
+    if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
             "Authorization": "KakaoAK " + config('ADMIN_KEY'),   # 변경불가
