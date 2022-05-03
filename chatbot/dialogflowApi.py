@@ -111,7 +111,10 @@ def update_intent(name, response, type):
     client = dialogflow_v2beta1.IntentsClient()
 
     intent_name = client.intent_path(DIALOGFLOW_PROJECT_ID, intent_id[name])
-    intent = client.get_intent(request={"name": intent_name})
+    request = dialogflow_v2beta1.GetIntentRequest(
+        name=intent_name,
+    )
+    intent = client.get_intent(request=request)
     if type == 0:
         message = dialogflow_v2beta1.types.Intent.Message.Text()
         message.text = [response]
