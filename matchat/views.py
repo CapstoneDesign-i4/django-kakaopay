@@ -207,7 +207,7 @@ def approval(request, product_id):
     }
     res = requests.post(URL, headers=headers, params=params)
     amount = res.json()['amount']['total']
-    res = res.json()
+    #res = res.json()
     context = {
         'res': res,
         'amount': amount,
