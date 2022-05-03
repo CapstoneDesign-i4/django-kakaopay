@@ -189,8 +189,8 @@ def pay(request, product_id):
         return redirect(next_url)
     return render(request, 'matchat/pay.html')
 
-def approval(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
+def approval(request):
+    #product = get_object_or_404(Product, pk=product_id)
     #product.reservation = request.user
     #product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
