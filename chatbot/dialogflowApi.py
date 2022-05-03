@@ -146,30 +146,30 @@ def update_intent(name, response, type):
 
 
 
-# def batch_update_intents(intent_name, response):
-#     # Create a client
-#     client = dialogflow_v2beta1.IntentsClient()
-#     intents = list()
-#     for i in range(len(intent_name)):
-#         if i == 4:
-#             intents.append(def_intent(intent_name[i], response[i], "image"))
-#         else:
-#             intents.append(def_intent(intent_name[i], response[i], "text"))
-#     ib = IntentBatch(
-#         intents=intents  # intent list
-#     )
-#     request = dialogflow_v2beta1.BatchUpdateIntentsRequest(
-#         parent="projects/" + DIALOGFLOW_PROJECT_ID + "/locations/global/agent",
-#         intent_batch_uri="gs://matchat_chatbot/intents/",
-#         intent_batch_inline=ib,
-#         language_code=DIALOGFLOW_LANGUAGE_CODE,
-#     )
-#     # Make the request
-#     operation = client.batch_update_intents(request=request)
-#     print("Waiting for operation to complete...")
-#     # response = operation.result()
-#     # Handle the response
-#     # print(response)
+def batch_update_intents(intent_name, response):
+    # Create a client
+    client = dialogflow_v2beta1.IntentsClient()
+    intents = list()
+    for i in range(len(intent_name)):
+        if i == 4:
+            intents.append(def_intent(intent_name[i], response[i], "image"))
+        else:
+            intents.append(def_intent(intent_name[i], response[i], "text"))
+    ib = IntentBatch(
+        intents=intents  # intent list
+    )
+    request = dialogflow_v2beta1.BatchUpdateIntentsRequest(
+        parent="projects/" + DIALOGFLOW_PROJECT_ID + "/locations/global/agent",
+        intent_batch_uri="gs://matchat_chatbot/intents/",
+        intent_batch_inline=ib,
+        language_code=DIALOGFLOW_LANGUAGE_CODE,
+    )
+    # Make the request
+    operation = client.batch_update_intents(request=request)
+    print("Waiting for operation to complete...")
+    # response = operation.result()
+    # Handle the response
+    # print(response)
 
 
 
