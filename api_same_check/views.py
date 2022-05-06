@@ -6,7 +6,7 @@ from matchat.models import *
 from rest_framework import status
 
 
-class PostList(APIView):
+class Result(APIView):
     def get(self, request, format=None):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
