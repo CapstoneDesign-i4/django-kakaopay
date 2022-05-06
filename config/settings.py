@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'matchat.apps.MatchatConfig',
     'account.apps.AccountConfig',
     'chatbot',
+    'api_finish.apps.ApiFinishConfig',
 ]
 
 MIDDLEWARE = [
