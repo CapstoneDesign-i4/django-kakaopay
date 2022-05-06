@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('matchat/', include('matchat.urls')),
-    path('', views.main, name='main'),
     path('api_same_check/', include('api_same_check.urls')),
+    path('', views.main, name='main'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
