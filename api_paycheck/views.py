@@ -14,11 +14,11 @@ class pay_check(APIView):
             product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
 
             # product state가 2이면 1 반환, 아니면 0 반환
-            if product.state == 2:
+            if int(product.state) == 2:
                 data = {'status': '1','key1':key}
                 return Response(data)
             else:
-                data = {'status': '0','key':key}
+                data = {'status': '0','key':key, 'state':product.state}
                 return Response(data)
 
 
