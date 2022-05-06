@@ -117,15 +117,14 @@ def product_create(request):
             product.key = randint(10000, 99999)
             product.save()
             for img in request.FILES.getlist('photo'):
-                if count == 1:
-                    product.web_result = detect_photo(img)
-                    product.save()
-                    count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
-
                 photos = Photo()
                 photos.product = product
                 photos.photo = img
                 photos.save()
+                if count == 1:
+                    product.web_result = detect_photo(img)
+                    product.save()
+                    count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
             return redirect('matchat:main')
     else:
         form = ProductForm()
