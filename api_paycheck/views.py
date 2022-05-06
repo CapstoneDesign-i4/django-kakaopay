@@ -12,4 +12,6 @@ class pay_check(APIView):
     def get(self, request, format=None):
         products = Product.objects.filter(key = 96144)
         serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+        if request.method == "POST":
+            return Response("111", request.key, serializer.data)
+        return Response("000", serializer.data)
