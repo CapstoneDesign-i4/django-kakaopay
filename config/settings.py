@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'matchat.apps.MatchatConfig',
     'account.apps.AccountConfig',
     'chatbot',
+    'api_paycheck',
+    'api_same_check',
+    'api_finish'
 ]
 
 MIDDLEWARE = [
