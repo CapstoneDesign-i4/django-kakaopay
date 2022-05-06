@@ -15,10 +15,10 @@ class pay_check(APIView):
 
             # product state가 2이면 1 반환, 아니면 0 반환
             if int(product.state) == 2:
-                data = {'status': '1','key1':key}
+                data = {'status': '1'}
                 return Response(data)
             else:
-                data = {'status': '0','key':key, 'state':product.state}
+                data = {'status': '0'}
                 return Response(data)
 
 
