@@ -27,4 +27,5 @@ class Result(APIView):
             product.state = '3'
             product.save()
 
-            return Response(key)
+            data = {'key': product.key}
+            return Response(data)
