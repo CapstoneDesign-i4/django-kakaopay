@@ -10,6 +10,6 @@ from django.shortcuts import render
 
 class pay_check(APIView):
     def get(self, request, format=None):
-        products = Product.objects.filter(key = request.key)
+        products = Product.objects.filter(key = 96144)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
