@@ -210,7 +210,7 @@ def pay(request, product_id):
             "quantity": "1",  # 구매 물품 수량
             "total_amount": product.price,  # 구매 물품 가격
             "tax_free_amount": "0",  # 구매 물품 비과세
-            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
+            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval/<int:product_id>",
             "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
             "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
