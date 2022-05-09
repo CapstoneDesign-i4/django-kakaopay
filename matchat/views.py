@@ -221,7 +221,7 @@ def pay(request, product_id):
     return render(request, 'matchat/pay.html')
 
 
-def approval(request, product_id):
+def approval(request):
     product = get_object_or_404(Product, pk=product_id)
     # product.reservation = request.user
     # product.save()
