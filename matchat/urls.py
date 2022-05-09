@@ -16,7 +16,7 @@ urlpatterns =[
    path('product/my/', views.product_my, name='my'),
    path('product/my/<int:product_id>/', views.my_detail, name='my_detail'),
    path('pay/<int:product_id>/', views.pay, name='pay'),
-   path('pay/approval/<int:product_id>/', views.approval, name='approval'),
+   path('pay/approval/', views.approval, name='approval'),
    path('pay/cancel/', views.cancel, name='cancel'),
    path('pay/fail/', views.fail, name='fail'),
 ]

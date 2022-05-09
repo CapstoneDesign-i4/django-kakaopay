@@ -210,7 +210,7 @@ def pay(request, product_id):
             "quantity": "1",  # 구매 물품 수량
             "total_amount": product.price,  # 구매 물품 가격
             "tax_free_amount": "0",  # 구매 물품 비과세
-            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval/<int:product_id>",
+            "approval_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/approval",
             "cancel_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/cancel",
             "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
@@ -221,8 +221,8 @@ def pay(request, product_id):
     return render(request, 'matchat/pay.html')
 
 
-def approval(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
+def approval(request):
+    product = get.objects.all()
     # product.reservation = request.user
     # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
@@ -243,7 +243,6 @@ def approval(request, product_id):
     context = {
         'res': res,
         'amount': amount,
-        'product': product,
     }
     return render(request, 'matchat/approval.html', context)
 
