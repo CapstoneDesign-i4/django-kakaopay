@@ -222,7 +222,7 @@ def pay(request, product_id):
 
 
 def approval(request):
-    product = get_object_or_404(Product)
+    product = get.objects.all()
     # product.reservation = request.user
     # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
