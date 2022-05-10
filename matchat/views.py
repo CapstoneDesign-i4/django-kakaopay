@@ -221,7 +221,7 @@ def approval(request):
     product = models.Product.objects.all()
     # product.reservation = request.user
     # product.save()
-    URL = 'https://kapi.kakao.com/v1/payment/approve'+product_id
+    URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
         "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
