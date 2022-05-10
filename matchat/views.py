@@ -95,7 +95,7 @@ def my_detail(request, product_id):
 
 def detect_photo(img):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
-    TEST_IMAGE = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/" + img
+    TEST_IMAGE = img
 
     image_data = open(TEST_IMAGE, "rb").read()
 
