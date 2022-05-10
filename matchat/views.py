@@ -59,7 +59,6 @@ def index(request):
 def detail(request, product_id):
     # 상세 페이지
     product = get_object_or_404(Product, pk=product_id)
-    user = get_object_or_404()
     response = [
         "상품 이름은 " + product.name + "입니다.",
         "상품 가격은 " + product.price + "원 입니다.",
