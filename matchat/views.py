@@ -219,9 +219,6 @@ def pay(request, product_id):
 
 
 def approval(request):
-    #product = Product.objects.get(tid=request.session['tid'])
-    # product.reservation = request.user
-    # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
