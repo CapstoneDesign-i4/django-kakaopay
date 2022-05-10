@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from api_same_check.serializers import *
 from matchat.models import *
 from rest_framework import status
+from django.core.exceptions import ObjectDoesNotExist
 
 class ProductList(APIView):
     # 모든 데이터 가져오기 (API Test용)
@@ -20,7 +21,7 @@ class Result(APIView):
             key = serializer.validated_data['key']  # key에 값 저장
             try:
                 product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
-            except Product.DoesNotExist:
+            except ObjectDoesNotExist:
                 product = None
 
             if product == None:
