@@ -72,7 +72,7 @@ def def_intent(intent_name, response, type):
                 [
                     {
                         "type": "image",
-                        "rawUrl": "https://ifh.cc/g/mO5qoo.jpg",
+                        "rawUrl": response,
                         "accessibilityText": "example"
                     }
                 ]
