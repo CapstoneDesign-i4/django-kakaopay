@@ -218,6 +218,7 @@ def pay(request, product_id):
 
 
 def approval(request):
+    product = models.Product.objects.all()
     # product.reservation = request.user
     # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'+product_id
@@ -238,6 +239,7 @@ def approval(request):
     context = {
         'res': res,
         'amount': amount,
+        'product': product,
     }
     return render(request, 'matchat/approval.html', context)
 
