@@ -94,7 +94,7 @@ def my_detail(request, product_id):
 
 def detect_photo(img):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
-    TEST_IMAGE = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/" + img
+    TEST_IMAGE = img
 
     image_data = open(TEST_IMAGE, "rb").read()
 
@@ -119,11 +119,10 @@ def product_create(request):
                 photos.product = product
                 photos.photo = img
                 photos.save()
-                for ph in product.photo_set.all:
-                    if count == 1:
-                        product.web_result = detect_photo(ph)
-                        product.save()
-                        count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
+                if count == 1:
+                    product.web_result = detect_photo(img)
+                    product.save()
+                    count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
             return redirect('matchat:main')
     else:
         form = ProductForm()
