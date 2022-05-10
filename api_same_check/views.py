@@ -19,10 +19,17 @@ class Result(APIView):
         if serializer.is_valid():
             key = serializer.validated_data['key']  # key에 값 저장
             product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
+            products = Product.objects.all()
+            count = 0
 
-            if product == None:
+            for match in products.key:
+                if match == key:
+                    count = 1
+
+            if count == 0:
                 data = {'status': '2'}
                 return Response(data)
+
 
 
             # 해당 key를 가진 상품에, 사진 url과 kiosk_result 저장
