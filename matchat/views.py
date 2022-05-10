@@ -1,4 +1,6 @@
 import os
+import urllib
+
 from decouple import config
 
 from django.contrib import messages
@@ -95,12 +97,14 @@ def my_detail(request, product_id):
 def detect_photo(img,product):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
     img_str = str(img)
-    image_data = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
+    img = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
+
+    u = urllib.request.urlopen(img)
+    image_data = u.read()
 
     response = requests.post(DETECTION_URL, files={"image": image_data}).json()
     result = response[0]['name']
     return result
-
 
 @login_required(login_url='account:login')
 def product_create(request):
@@ -119,7 +123,7 @@ def product_create(request):
                 photos.photo = img
                 photos.save()
                 if count == 1:
-                    product.web_result = detect_photo(img,product)
+                    product.web_result = detect_photo(img, product)
                     product.save()
                     count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
             return redirect('matchat:main')
