@@ -18,13 +18,8 @@ class Result(APIView):
 
         # 유효성 검사
         if serializer.is_valid():
-            #key = serializer.validated_data['key']  # key에 값 저장
-            try:
-                product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
-            except Product.DoesNotExist:
-                data = {'status': '2'}
-                return Response(data)
-
+            key = serializer.validated_data['key']  # key에 값 저장
+            product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
 
             # 해당 key를 가진 상품에, 사진 url과 kiosk_result 저장
             product.kiosk_photo = serializer.validated_data['kiosk_photo']
