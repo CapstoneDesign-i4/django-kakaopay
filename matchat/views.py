@@ -215,7 +215,7 @@ def pay(request, product_id):
             "fail_url": "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/matchat/pay/fail",
         }
         res = requests.post(URL, headers=headers, params=params)
-        requests.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
+        request.session['tid'] = res.json()['tid']  # 결제 승인시 사용할 tid를 세션에 저장
         next_url = res.json()['next_redirect_pc_url']  # 결제 페이지로 넘어갈 url을 저장
         return redirect(next_url)
     return render(request, 'matchat/pay.html')
