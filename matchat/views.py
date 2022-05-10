@@ -207,7 +207,7 @@ def pay(request, product_id):
             "cid": "TC0ONETIME",  # 테스트용 코드
             "partner_order_id": '1',  # 주문번호
             "partner_user_id": request.user.username,  # 유저 아이디
-            "item_name": product.name,  # 구매 물품 이름
+            "item_name": product.key,  # 구매 물품 이름
             "quantity": "1",  # 구매 물품 수량
             "total_amount": product.price,  # 구매 물품 가격
             "tax_free_amount": "0",  # 구매 물품 비과세
@@ -223,10 +223,6 @@ def pay(request, product_id):
 
 
 def approval(request):
-    print(request.session)
-    product = Product.objects.get(tid=request.session['tid'])
-    # product.reservation = request.user
-    # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
@@ -235,7 +231,7 @@ def approval(request):
     params = {
         "cid": "TC0ONETIME",  # 테스트용 코드
         "tid": request.session['tid'],  # 결제 요청시 세션에 저장한 tid
-        "partner_order_id": product.key,      # 주문번호
+        "partner_order_id": '1',      # 주문번호
         "partner_user_id": request.user.username,    # 유저 아이디
         "pg_token": request.GET.get("pg_token"),  # 쿼리 스트링으로 받은 pg토큰
     }
