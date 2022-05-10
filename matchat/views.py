@@ -205,9 +205,9 @@ def pay(request, product_id):
         }
         params = {
             "cid": "TC0ONETIME",  # 테스트용 코드
-            "partner_order_id": product.key,  # 주문번호
+            "partner_order_id": '1',  # 주문번호
             "partner_user_id": request.user.username,  # 유저 아이디
-            "item_name": product.name,  # 구매 물품 이름
+            "item_name": product.key,  # 구매 물품 이름
             "quantity": "1",  # 구매 물품 수량
             "total_amount": product.price,  # 구매 물품 가격
             "tax_free_amount": '0',  # 구매 물품 비과세
