@@ -219,7 +219,7 @@ def pay(request, product_id):
     return render(request, 'matchat/pay.html')
 
 
-def approval(request):
+def approval(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     # product.reservation = request.user
     # product.save()
@@ -241,7 +241,6 @@ def approval(request):
     context = {
         'res': res,
         'amount': amount,
-        'product': product,
     }
     return render(request, 'matchat/approval.html', context)
 
