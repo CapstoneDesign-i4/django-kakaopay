@@ -59,6 +59,7 @@ def index(request):
 def detail(request, product_id):
     # 상세 페이지
     product = get_object_or_404(Product, pk=product_id)
+    user = get_object_or_404()
     response = [
         "상품 이름은 " + product.name + "입니다.",
         "상품 가격은 " + product.price + "원 입니다.",
@@ -66,7 +67,8 @@ def detail(request, product_id):
         "상세 설명:" + product.content,
         "https://ibb.co/h8J91rB",
         "사용 기간은 " + product.use_period + "입니다.",
-        product.name
+        product.name,
+        "판매자 이름은 " + str(product.author) + "입니다."
     ]
 
     name = list(intent_id.keys())
@@ -219,8 +221,8 @@ def pay(request, product_id):
     return render(request, 'matchat/pay.html')
 
 
-def approval(request):
-    product = Product.objects.all()
+def approval(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
     # product.reservation = request.user
     # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
@@ -241,6 +243,7 @@ def approval(request):
     context = {
         'res': res,
         'amount': amount,
+        'product': product,
     }
     return render(request, 'matchat/approval.html', context)
 
