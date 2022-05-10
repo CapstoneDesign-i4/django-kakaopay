@@ -20,7 +20,7 @@ class Result(APIView):
         if serializer.is_valid():
             #key = serializer.validated_data['key']  # key에 값 저장
             try:
-                product = Product.objects.get(key='key')  # 해당 key를 가진 상품 호출
+                product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
             except Product.DoesNotExist:
                 data = {'status': '2'}
                 return Response(data)
