@@ -20,6 +20,7 @@ class Result(APIView):
             key = serializer.validated_data['key']  # key에 값 저장
             product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
 
+
             # 해당 key를 가진 상품에, 사진 url과 kiosk_result 저장
             product.kiosk_photo = serializer.validated_data['kiosk_photo']
             product.kiosk_result = serializer.validated_data['kiosk_result']
