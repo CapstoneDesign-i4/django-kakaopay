@@ -196,7 +196,7 @@ def product_my(request):
 def pay(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.state='2'
-    product.reservation = request.user.username # reservation = 구매자, 구매자는 detail 페이지에서 인증번호 봐야하므로 reservation 업데이트
+    product.reservation = request.user # reservation = 구매자, 구매자는 detail 페이지에서 인증번호 봐야하므로 reservation 업데이트
     product.save()
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
