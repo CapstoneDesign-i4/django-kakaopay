@@ -218,7 +218,7 @@ def pay(request, product_id):
 
 
 def approval(request):
-    product = models.Product.objects.all()
+    product = Product.objects.get(tid=request.session['tid'])
     # product.reservation = request.user
     # product.save()
     URL = 'https://kapi.kakao.com/v1/payment/approve'
@@ -229,7 +229,7 @@ def approval(request):
     params = {
         "cid": "TC0ONETIME",  # 테스트용 코드
         "tid": request.session['tid'],  # 결제 요청시 세션에 저장한 tid
-        "partner_order_id": '1',      # 주문번호
+        "partner_order_id": product.key,      # 주문번호
         "partner_user_id": request.user.username,    # 유저 아이디
         "pg_token": request.GET.get("pg_token"),  # 쿼리 스트링으로 받은 pg토큰
     }
@@ -239,7 +239,6 @@ def approval(request):
     context = {
         'res': res,
         'amount': amount,
-        'product': product,
     }
     return render(request, 'matchat/approval.html', context)
 
