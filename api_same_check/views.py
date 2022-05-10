@@ -18,7 +18,7 @@ class Result(APIView):
         # 유효성 검사
         if serializer.is_valid():
             key = serializer.validated_data['key']  # key에 값 저장
-            product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
+            #product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
             products = Product.objects.all()
             count = 0
 
