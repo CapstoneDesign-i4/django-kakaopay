@@ -218,6 +218,7 @@ def pay(request, product_id):
 
 
 def approval(request):
+    print(request.session)
     product = Product.objects.get(tid=request.session['tid'])
     # product.reservation = request.user
     # product.save()
