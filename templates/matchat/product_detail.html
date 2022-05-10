@@ -34,10 +34,14 @@
     </div>
 <a href="{% url 'main' %}" class="btn btn-primary">메인</a>
 {% if request.user != product.author %}
-    {% if product.reservation == None %}
+    {% if product.state == '0' %}
+        <a href="" class="btn btn-danger">결제불가</a>
+    {% elif product.state == '1' %}
         <a href="{% url 'matchat:pay' product.id %}" class="btn btn-outline-info">결제</a>
-    {% else %}
+    {% elif product.state == '2' %}
         <a href="" class="btn btn-danger">결제완료</a>
+    {% else %}
+        <a href="" class="btn btn-danger">판매완료</a>
     {% endif %}
 {% endif %}
 
