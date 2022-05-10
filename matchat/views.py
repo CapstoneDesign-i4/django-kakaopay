@@ -98,11 +98,10 @@ def my_detail(request, product_id):
 def detect_photo(img, product):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
     img_str = str(img)
-    img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
+    # img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
+    img_url = "media/" + str(product.author) +"/" + str(product.name) + "/" + img_str
 
-    content = urllib.request.urlopen(url= img_url.encode("UTF-8"), timeout=20).read()
-
-    response = requests.post(DETECTION_URL, files={"image": content}).json()
+    response = requests.post(DETECTION_URL, files={"image": img_url}).json()
     result = response[0]['name']
     return result
 
