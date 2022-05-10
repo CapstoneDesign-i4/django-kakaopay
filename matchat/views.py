@@ -94,10 +94,8 @@ def my_detail(request, product_id):
 
 def detect_photo(img,product):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
-    img_str1 = str(img) # 문자열로 변환 <InMemoryUploadedFile: 컨하.png (image/png)>
-    img_str2 = img_str1[23:] # 앞부분 자르기
-    img_str3 = img_str2[:-13]# 뒷부분 자르기
-    image_data = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ product.author +"/" + product.name + "/" + img_str3
+    img_str = str(img)
+    image_data = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ product.author +"/" + product.name + "/" + img_str
 
     response = requests.post(DETECTION_URL, files={"image": image_data}).json()
     result = response[0]['name']
