@@ -98,10 +98,9 @@ def my_detail(request, product_id):
 def detect_photo(img, product):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
     img_str = str(img)
-    # img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
-    img_url = "media/" + str(product.author) +"/" + str(product.name) + "/" + img_str
+    img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
 
-    response = requests.post(DETECTION_URL, files={"image": img_url}).json()
+    response = requests.post(DETECTION_URL, files={"url": img_url}).json()
     result = response[0]['name']
     return result
 
@@ -196,6 +195,8 @@ def product_my(request):
 @login_required(login_url='account:login')
 def pay(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+    product.state='2'
+    product.save()
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {

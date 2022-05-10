@@ -12,7 +12,7 @@ class ProductList(APIView):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
-class Result(APIView):
+class Result(APIView): # 없는 인증번호를 치면 'status : 2' 리턴
     def post(self, request, format=None):
         serializer = ProductSerializer(data=request.data)
 
