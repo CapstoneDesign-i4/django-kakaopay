@@ -100,7 +100,7 @@ def detect_photo(img, product):
     img_str = str(img)
     img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
 
-    img_data = urllib.request.get(img_url)
+    img_data = urllib.request.urlopen(img_url)
     img_byte = Image.open(BytesIO(img_data.content))
 
     response = requests.post(DETECTION_URL, files={"image": img_byte}).json()
