@@ -92,9 +92,10 @@ def my_detail(request, product_id):
     return render(request, 'matchat/my_product_detail.html', context)
 
 
-def detect_photo(img):
+def detect_photo(img,product):
     DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
-    image_data = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/" + img
+    img_str = str(img)
+    image_data = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
 
     response = requests.post(DETECTION_URL, files={"image": image_data}).json()
     result = response[0]['name']
@@ -118,7 +119,7 @@ def product_create(request):
                 photos.photo = img
                 photos.save()
                 if count == 1:
-                    product.web_result = detect_photo(img)
+                    product.web_result = detect_photo(img,product)
                     product.save()
                     count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
             return redirect('matchat:main')
