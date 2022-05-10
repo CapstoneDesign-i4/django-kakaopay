@@ -100,7 +100,11 @@
         <section class="page-section" id="contact">
             <div class="container">
                 <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">로그인</h2>
+                {% if user.is_authenticated %}
+                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">로그아웃</h2>
+                {% else %}
+                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">로그인</h2>
+                {% endif %}
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -108,11 +112,18 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Contact Section Form-->
-               <div class="text-center mt-4">
-               <a class="btn btn-primary btn-lg" href="{% url 'account:login' %}">
-                        로그인
-                    </a>
+                <div class="text-center mt-4">
+                   {% if user.is_authenticated %}
+                       <a class="btn btn-primary btn-lg" href="{% url 'account:logout' %}">
+                            로그아웃
+                        </a>
+                   {% else %}
+                        <a class="btn btn-primary btn-lg" href="{% url 'account:login' %}">
+                            로그인
+                        </a>
+                   {% endif %}
                </div>
+            </div>
         </section>
         <!-- Footer-->
         <footer class="footer text-center">
