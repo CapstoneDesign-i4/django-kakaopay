@@ -59,7 +59,6 @@ def index(request):
 def detail(request, product_id):
     # 상세 페이지
     product = get_object_or_404(Product, pk=product_id)
-    user = get_object_or_404()
     response = [
         "상품 이름은 " + product.name + "입니다.",
         "상품 가격은 " + product.price + "원 입니다.",
@@ -225,7 +224,7 @@ def approval(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     # product.reservation = request.user
     # product.save()
-    URL = 'https://kapi.kakao.com/v1/payment/approve'
+    URL = 'https://kapi.kakao.com/v1/payment/approve'+product_id
     headers = {
         "Authorization": "KakaoAK " + config('ADMIN_KEY'),
         "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
