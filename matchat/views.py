@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from random import randint
 
+
 from django.http import HttpResponse, JsonResponse
 from django.views import templates
 import requests
@@ -99,7 +100,7 @@ def detect_photo(img, product):
     img_str = str(img)
     img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
 
-    image_data = urllib.request.urlopen(img_url).read()
+    image_data = urllib.request.urlopen(img_url).read().decode('utf8')
 
     response = requests.post(DETECTION_URL, files={"image": image_data}).json()
     result = response[0]['name']
