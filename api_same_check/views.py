@@ -22,7 +22,7 @@ class Result(APIView): # 없는 인증번호를 치면 'status : 2' 리턴
             try:
                 product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
             except ObjectDoesNotExist:
-                data = {'status': '1'}
+                data = {'status': '2'}
                 return Response(data)
 
             # 해당 key를 가진 상품에, 사진 url과 kiosk_result 저장
