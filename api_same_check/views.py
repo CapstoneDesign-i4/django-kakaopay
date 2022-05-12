@@ -19,11 +19,10 @@ class Result(APIView): # 없는 인증번호를 치면 'status : 2' 리턴
         # 유효성 검사
         if serializer.is_valid():
             key = serializer.validated_data['key']  # key에 값 저장
-            product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
-
-            # 해당 키를 가진 객체가 없으면 2 반환
-            if product == None:
-                data = {'status': '2'}
+            try:
+                product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
+            except ObjectDoesNotExist:
+                data = {'status': '1'}
                 return Response(data)
 
             # 해당 key를 가진 상품에, 사진 url과 kiosk_result 저장
