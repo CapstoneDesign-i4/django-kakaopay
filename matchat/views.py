@@ -96,7 +96,7 @@ def my_detail(request, product_id):
 
 
 def detect_photo(img, product):
-    DETECTION_URL = "http://ec2-43-200-3-6.ap-northeast-2.compute.amazonaws.com:5000/predict"
+    DETECTION_URL = "http://ec2-3-34-46-112.ap-northeast-2.compute.amazonaws.com:5000/predict"
     img_str = str(img)
     img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
 
