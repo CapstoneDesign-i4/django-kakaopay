@@ -96,9 +96,11 @@ def my_detail(request, product_id):
 
 
 def detect_photo(img, product):
-    DETECTION_URL = "http://ec2-52-78-36-150.ap-northeast-2.compute.amazonaws.com:5000/predict"
+    DETECTION_URL = " http://127.0.0.1:5000/predict"
     img_str = str(img)
     img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
+
+
 
     response = requests.post(DETECTION_URL, files={"url": img_url}).json()
     result = response[0]['name']
