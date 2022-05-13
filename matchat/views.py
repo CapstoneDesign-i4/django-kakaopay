@@ -99,9 +99,14 @@ def detect_photo(img, product):
     DETECTION_URL = "http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict"
     img_str = str(img)
     img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
-
+    product.kiosk_photo = 'debug1'
+    product.save()
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36'}
+    product.kiosk_photo = 'debug2'
+    product.save()
     response = requests.post(DETECTION_URL, files={"url": img_url}, headers=headers).json()
+    product.kiosk_photo = 'debug3'
+    product.save()
     result = response[0]['name']
     return result
 
