@@ -100,7 +100,7 @@ def detect_photo(img, product):
     img_str = str(img)
     img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
 
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36'}
     response = requests.post(DETECTION_URL, files={"url": img_url}, headers=headers).json()
     result = response[0]['name']
     return result
