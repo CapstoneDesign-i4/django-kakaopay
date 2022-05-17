@@ -95,17 +95,6 @@ def my_detail(request, product_id):
     return render(request, 'matchat/my_product_detail.html', context)
 
 
-def detect_photo(img, product):
-    DETECTION_URL = "http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict"
-    img_str = str(img)
-    img_url = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/"+ str(product.author) +"/" + str(product.name) + "/" + img_str
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36'}
-    response = requests.post(DETECTION_URL, files={"url": img_url}, headers=headers).json()
-    result = response[0]['name']
-    product.web_result = result
-    product.save()
-
-
 @login_required(login_url='account:login')
 def product_create(request):
     count = 1
@@ -122,9 +111,6 @@ def product_create(request):
                 photos.product = product
                 photos.photo = img
                 photos.save()
-                if count == 1:
-                    count = 0  # 처음 입력 받은 사진만(=count가 1일 때) detect하기
-                    detect_photo(img, product)
             return redirect('matchat:main')
     else:
         form = ProductForm()
