@@ -95,9 +95,14 @@ def my_detail(request, product_id):
     return render(request, 'matchat/my_product_detail.html', context)
 
 
+def detect_photo(img, product):
+    TEST_IMG = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/admin/test444/t4_Xeyhve0.jpg"
+    res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMG}).json()
+    return res[0]['name']
+
+
 @login_required(login_url='account:login')
 def product_create(request):
-    count = 1
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -110,6 +115,7 @@ def product_create(request):
                 photos = Photo()
                 photos.product = product
                 photos.photo = img
+                product.web_result = detect_photo(img, product)
                 photos.save()
             return redirect('matchat:main')
     else:
