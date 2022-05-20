@@ -113,7 +113,6 @@ def def_intent(intent_name, response, type):
             training_phrases=training_phrases,
             messages=[message],
         )
-    #print(intent)
 
     return intent
 
