@@ -96,7 +96,7 @@ def my_detail(request, product_id):
 
 
 def detect_photo(img, product):
-    TEST_IMG = "https://blog.kakaocdn.net/dn/ZzZqy/btqEcm5Wmzc/rppbuHPzrS4zISF9dHMOtK/img.jpg"
+    TEST_IMG = "http://m.lookple.com/web/product/big/20200414/2aba8e5a2ef35b9e40db2cdf33563dbf.jpg"
     res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMG}).json()
     return res[0]['name']
 
