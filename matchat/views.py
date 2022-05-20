@@ -96,7 +96,7 @@ def my_detail(request, product_id):
 
 
 def detect_photo(img, product):
-    TEST_IMG = "https://shop1.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FE5083949494.jpg%3Fut%3D20181220144031"
+    TEST_IMG = "https://blog.kakaocdn.net/dn/ZzZqy/btqEcm5Wmzc/rppbuHPzrS4zISF9dHMOtK/img.jpg"
     res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMG}).json()
     return res[0]['name']
 
