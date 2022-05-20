@@ -115,6 +115,7 @@ def product_create(request):
                 photos = Photo()
                 photos.product = product
                 photos.photo = img
+                photos.save()
                 product.web_result = detect_photo(img, product)
                 photos.save()
             return redirect('matchat:main')
