@@ -110,7 +110,10 @@ def product_create(request):
                 photos.product = product
                 photos.photo = img
                 photos.save()
-                product.web_result = str(img)
+                img_str = str(img)
+                img_url = "https://django-matchat.s3.ap-northeast-2.amazonaws.com/media/" + str(product.author) + "/" + str(product.name) + "/" + img_str
+                res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": str(img_url)}).json()
+                product.web_result = res[0]['name']
                 product.save()
             return redirect('matchat:main')
     else:
