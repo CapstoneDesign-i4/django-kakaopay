@@ -104,9 +104,9 @@ def product_create(request):
             product.create_date = timezone.now()
             product.author = request.user
             product.key = randint(10000, 99999)
-            TEST_IMAGE = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/admin/test444/22.jpg"
-            res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMAGE}).json()
-            product.web_result = res[0]['name']
+            # TEST_IMAGE = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/admin/test444/22.jpg"
+            # res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMAGE}).json()
+            # product.web_result = res[0]['name']
             product.save()
             for img in request.FILES.getlist('photo'):
                 photos = Photo()
