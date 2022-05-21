@@ -30,3 +30,5 @@ sqlparse==0.4.2
 urllib3==1.26.8
 python-decouple==3.6
 djangorestframework==3.13.1
+boto3==1.23.4
+django-storage==1.12.3
