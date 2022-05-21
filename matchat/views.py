@@ -110,7 +110,7 @@ def product_create(request):
                 photos.product = product
                 photos.photo = img
                 photos.save()
-                TEST_IMAGE = "http://ec2-3-39-141-76.ap-northeast-2.compute.amazonaws.com/media/admin/test444/22.jpg"
+                TEST_IMAGE = "https://s3-ap-northeast-2.amazonaws.com/matchat/raspberrypi/73021.jpg"
                 res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMAGE}).json()
                 product.web_result = res[0]['name']
                 product.save()
