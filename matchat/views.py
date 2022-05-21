@@ -95,9 +95,9 @@ def my_detail(request, product_id):
     return render(request, 'matchat/my_product_detail.html', context)
 
 
-def detect_photo(img, product):
-    TEST_IMG = "http://ec2-3-39-94-66.ap-northeast-2.compute.amazonaws.com/media/admin/test2/22.jpg"
-    res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": TEST_IMG}).json()
+def detect_photo():
+    image_url = "http://ec2-3-39-94-66.ap-northeast-2.compute.amazonaws.com/media/admin/test2/22.jpg"
+    res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": image_url}).json()
     return res[0]['name']
 
 
@@ -116,7 +116,7 @@ def product_create(request):
                 photos.product = product
                 photos.photo = img
                 photos.save()
-                product.web_result = detect_photo(img, product)
+                product.web_result = detect_photo()
                 product.save()
             return redirect('matchat:main')
     else:
