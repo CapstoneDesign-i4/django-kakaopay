@@ -112,7 +112,7 @@ def product_create(request):
                 photos.save()
                 img_str = str(img)
                 img_url = "https://django-matchat.s3.ap-northeast-2.amazonaws.com/media/" + str(product.author) + "/" + str(product.name) + "/" + img_str
-                encoded = img_url.encode('utf-8')
+                encoded = str(img_url, "utf-8")
                 res = requests.post("http://ec2-15-164-129-198.ap-northeast-2.compute.amazonaws.com:5000/predict", files={"url": encoded}).json()
                 product.web_result = res[0]['name']
                 product.save()
