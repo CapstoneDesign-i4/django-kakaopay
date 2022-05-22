@@ -17,6 +17,7 @@ class Product(models.Model):
     place = models.CharField(max_length=10, default='이대역') # 지점
     kiosk_photo = models.CharField(max_length=2090, null=True, blank=True) #kiosk 사진의 url 저장
     kiosk_result = models.CharField(max_length=100, default='none')
+    web_photo = models.CharField(max_length=2090, null=True, blank=True)  # web 사진의 url 저장
     web_result = models.CharField(max_length=100, default='none')
 
     def __str__(self):

@@ -22,7 +22,7 @@ class Result(APIView): # 없는 인증번호를 치면 'status : 2' 리턴
             try:
                 product = Product.objects.get(key=key)  # 해당 key를 가진 상품 호출
             except ObjectDoesNotExist:
-                data = {'status': '2'}
+                data = {'status': '2', 'web_photo':'none'}
                 return Response(data)
 
             # 해당 key를 가진 상품에, 사진 url과 kiosk_result 저장
@@ -35,9 +35,9 @@ class Result(APIView): # 없는 인증번호를 치면 'status : 2' 리턴
                 # 사전등록한 상품과 동일한 상품을 등록했다면 state 변경
                 product.state = '1'
                 product.save()
-                data = {'status': '1'}
+                data = {'status': '1', 'web_photo' : product.web_photo}
                 return Response(data)
             else:
-                data = {'status': '0'}
+                data = {'status': '0', 'web_photo' : product.web_photo}
                 return Response(data)
 
